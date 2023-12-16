@@ -2,14 +2,14 @@ package conta.model;
 
 public class Conta {
 	
-	private Integer numero;
-	private Integer agencia;
-	private Integer tipo;
+	private int numero;
+	private int agencia;
+	private int tipo;
 	private String titular;
-	private Float saldo;
+	private float saldo;
 	
 	
-	public Conta(Integer numero, Integer agencia, Integer tipo, String titular, Float saldo) {
+	public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
 		this.numero = numero;
 		this.agencia = agencia;
 		this.tipo = tipo;
@@ -18,7 +18,7 @@ public class Conta {
 	}
 
 
-	public Integer getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
@@ -28,7 +28,7 @@ public class Conta {
 	}
 
 
-	public Integer getAgencia() {
+	public int getAgencia() {
 		return agencia;
 	}
 
@@ -38,7 +38,7 @@ public class Conta {
 	}
 
 
-	public Integer getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
@@ -58,7 +58,7 @@ public class Conta {
 	}
 
 
-	public Float getSaldo() {
+	public float getSaldo() {
 		return saldo;
 	}
 
