@@ -21,7 +21,7 @@ public class ContaCorrente extends Conta {
 	public boolean sacar(float valor) {
 		if (this.getSaldo() + this.getLimite() < valor) {
 			System.out.println("\nSaldo Insuficiente!");
-			return true;
+			return false;
 		}
 		this.setSaldo(this.getSaldo() - valor);
 		return true;		

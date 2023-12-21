@@ -20,9 +20,9 @@ public class Menu {
 		ContaController contas = new ContaController();
 		
 				
-		int opcao, numero, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;	
+		float saldo, limite, valor;	
 		
 		//Criando contas
 		ContaCorrente cc1 = new ContaCorrente(contas.gerarNumero(), 123, 1, "João da Silva", 1000f, 100.0f);
@@ -183,24 +183,56 @@ public class Menu {
 				break;
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Saque\n\n");
-				keyPress();
 				
+				System.out.print("\nDigite o número da conta: ");
+				numero = sc.nextInt();
+				
+				do {
+					System.out.print("\nDigite o valor do saque (R$): ");
+					valor = sc.nextFloat();
+				} while (valor <= 0);
+				
+				contas.sacar(numero, valor);
+				
+				keyPress();				
 				break;
 			case 7:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Depósito\n\n");
-				keyPress();
 				
+				System.out.print("\nDigite o número da conta: ");
+				numero = sc.nextInt();
+				
+				do {
+					System.out.print("\nDigite o valor do depósito (R$): ");
+					valor = sc.nextFloat();
+				} while (valor <= 0);
+				
+				contas.depositar(numero, valor);
+				
+				keyPress();				
 				break;
 			case 8:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Transferência entre Contas\n\n");
-				keyPress();
 				
+				System.out.println("Digite o numero da conta de origem: ");
+				numero = sc.nextInt();
+				System.out.println("Digite o numero da conta de destino: ");
+				numeroDestino = sc.nextInt();
+				
+				do {
+					System.out.println("Digite o valor da transferência (R$): ");
+					valor = sc.nextFloat();
+				} while (valor <= 0);
+				
+				contas.transferir(numero, numeroDestino, valor);
+				
+				keyPress();				
 				break;
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n");
 				System.out.println(Cores.TEXT_RESET);
-				keyPress();
 				
+				keyPress();				
 				break;
 			
 			}
