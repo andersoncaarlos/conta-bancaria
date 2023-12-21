@@ -20,7 +20,7 @@ public class Menu {
 		ContaController contas = new ContaController();
 		
 				
-		int opcao, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario;
 		String titular;
 		float saldo, limite;	
 		
@@ -117,18 +117,69 @@ public class Menu {
 				break;
 			case 3:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Consultar dados da conta - por número\n\n");
+				
+				System.out.print("Digite o número da conta: ");
+				numero = sc.nextInt();
+				
+				contas.procurarPorNumero(numero);
+				
 				keyPress();
 				
 				break;
 			case 4:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Atualizar dados da Conta\n\n");
-				keyPress();
 				
+				System.out.println("Digite o número da conta: ");
+				numero = sc.nextInt();
+				
+				var buscaConta = contas.buscarNaCollection(numero);
+				
+				if (buscaConta != null) {
+					
+					tipo = buscaConta.getTipo();
+					
+					System.out.print("\nDigite o número da agência: ");
+					agencia = sc.nextInt();
+					System.out.print("\nDigite o nome do titular: ");
+					sc.skip("\\R?");
+					titular = sc.nextLine();
+					
+					System.out.print("\nDigite o saldo da conta (R$): ");
+					saldo = sc.nextFloat();
+					
+					switch (tipo) {
+						case 1 -> {
+							System.out.print("\nDigite o limite de crédito (R$): ");
+							limite = sc.nextFloat();
+							
+							contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+						}
+						case 2 -> {
+							System.out.print("\nDigite o dia do aniversário da conta: ");
+							aniversario = sc.nextInt();
+							
+							contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+						}
+						default -> {
+							System.out.print("\nTipo de conta inválido");
+						}
+					}
+				}
+				else {
+					System.out.println("A conta não foi encontrada!");
+				}
+				
+				keyPress();				
 				break;
 			case 5:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Apagar a Conta\n\n");
-				keyPress();
 				
+				System.out.print("\nDigite o número da conta: ");
+				numero = sc.nextInt();
+				
+				contas.deletar(numero);
+				
+				keyPress();				
 				break;
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Saque\n\n");
